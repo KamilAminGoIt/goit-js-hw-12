@@ -26,9 +26,9 @@ const topBtn = createToggle('.top');
 
 searchForm.addEventListener('submit', event => {
   event.preventDefault();
-  const request = inputField.value;
+  requestMore = inputField.value;
   currentPage = 1;
-  fetchImages(request, currentPage);
+  fetchImages(requestMore, currentPage);
   queryWord.textContent = inputField.value;
 });
 
@@ -36,6 +36,7 @@ let page = 1;
 let currentPage = 1;
 let totalHits = 0;
 let per_page = 30;
+let requestMore = '';
 
 async function fetchImages(request, page = 1) {
   loader.enable();
@@ -189,8 +190,7 @@ function makeImgItem({
 }
 
 moreButton.addEventListener('click', () => {
-  const request = inputField.value;
-  fetchImages(request, currentPage + 1);
+  fetchImages(requestMore, currentPage + 1);
 });
 
 let rect = resultsGalleryList.getBoundingClientRect();
